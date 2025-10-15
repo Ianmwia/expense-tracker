@@ -15,10 +15,10 @@
     <main>
         <section>
             <form action="" id="expense-form">
-                <input type="text" name="expense" id="expense" placeholder="expense">
-                <input type="number" name="amount" id="amount" placeholder="amount">
-                <input type="text" name="category" id="category" placeholder="category">
-                <button type="submit">Submit</button>
+                <input type="text" name="expense" id="expense" placeholder="expense" required>
+                <input type="number" name="amount" id="amount" placeholder="amount" required>
+                <input type="text" name="category" id="category" placeholder="category" required>
+                <button type="submit">Add Expense</button>
             </form>
         </section>
         <section id="expense-list">
@@ -28,7 +28,7 @@
             <!--filter by category-->
         </section>
         <section id="total-expenses">
-
+            <h3>Total Amount:0</h3>
         </section>
     </main>
     <!--footer-->
