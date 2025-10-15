@@ -16,6 +16,12 @@ expenseForm.addEventListener('submit', (e)=>{
     //total amount call
     addTotalExpense()
 
+    //add expense list
+    addExpenseList()
+
+    //local storage
+    storeExpenses(expense.value, amount.value, category.value)
+
     //reset after user input
     expenseForm.reset()
 })
@@ -58,5 +64,14 @@ function storeExpenses(description, amount, category){
     expenseItemList.push(expenseItem)
     localStorage.setItem('expenseItems', JSON.stringify(expenseItemList))
 }
+//load also add button
+function loadStoreExpenses(){
+    const expenseItemList = JSON.parse(localStorage.getItem('expenseItems')) || []
 
-window.addEventListener('DOMContentLoaded')
+    expenseItemList.forEach(item => {
+        const listItem = document.createElement('div')
+        listItem.textContent = `${item.description} --${item.amount} --${item.category}`
+        expenseList.appendChild(listItem)
+    })
+}
+window.addEventListener('DOMContentLoaded', loadStoreExpenses)
