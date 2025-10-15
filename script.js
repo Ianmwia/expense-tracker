@@ -21,6 +21,10 @@ expenseForm.addEventListener('submit', (e)=>{
     //total amount call
     addTotalExpense()
 
+    //add expense list call
+    addExpenseList()
+
+
     //reset after user input
     expenseForm.reset()
 })
@@ -31,4 +35,27 @@ let totalAmount = 0
 function addTotalExpense(){
     totalAmount += Number(amount.value)
     totalExpenses.innerHTML = `<h3> Total Amount: ${totalAmount}</h3>`
+}
+
+//append list items
+function addExpenseList(){
+    const expenseDescription = expense.value
+    const expenseAmount = amount.value
+    const expenseCategory = category.value
+
+    const expenseItem = document.createElement('div')
+
+    const buttonId = `remove-${Date.now()}`
+    
+    expenseItem.innerHTML = `<p>${expenseDescription}</p> -- ${expenseAmount} -- ${expenseCategory}
+    <button id='${buttonId}'>Remove</button>`
+
+    expenseList.appendChild(expenseItem)
+
+    document.getElementById(buttonId).addEventListener('click', ()=>{
+        expenseList.removeChild(expenseItem)
+        totalAmount -= Number(expenseAmount)
+        totalExpenses.innerHTML = `<h3> Total Amount: ${totalAmount}</h3>`
+        })
+        
 }
