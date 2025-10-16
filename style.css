@@ -10,3 +10,48 @@ body{
 main{
     flex-grow: 1;
 }
+/*nav*/
+nav{
+    background: linear-gradient(to left, red, blue);
+    padding: 5px;
+}
+
+/*main*/
+main{
+    padding: 8px;
+    margin: 12px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    border-radius: 8px;
+}
+form input {
+    padding: 3px;
+    cursor: pointer;
+}
+form button{
+    padding: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    &:hover{
+        transform: scale(1.02);
+    }
+}
+.form-section{
+    margin-bottom: 10px;
+}
+#expense-list{
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    
+}
+/*footer*/
+footer{
+    background: linear-gradient(to left, red, blue);
+    padding: 5px;
+}
