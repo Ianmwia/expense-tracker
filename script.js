@@ -8,6 +8,8 @@ const expenseList = document.getElementById('expense-list')
 const filterCategory = document.getElementById('filter-category')
 const totalExpenses = document.getElementById('total-expenses')
 
+const tableBody = document.getElementById('expense-table-body')
+
 
 //event listener
 expenseForm.addEventListener('submit', (e)=>{
@@ -17,7 +19,7 @@ expenseForm.addEventListener('submit', (e)=>{
     addTotalExpense()
 
     //add expense list
-    addExpenseList()
+    addExpenseList(expense.value, amount.value, category.value)
 
     //local storage
     storeExpenses(expense.value, amount.value, category.value)
@@ -35,26 +37,22 @@ function addTotalExpense(){
 }
 
 //append list items
-function addExpenseList(){
-    const expenseDescription = expense.value
-    const expenseAmount = amount.value
-    const expenseCategory = category.value
+function addExpenseList(expenseDescription,expenseAmount, expenseCategory){
 
-    const expenseItem = document.createElement('div')
+    const tr = document.createElement('tr')
+    tr.innerHTML = `
+        <td>${expenseDescription}</td>
+        <td>${expenseAmount}</td>
+        <td>${expenseCategory}</td>
+        <td><button class='remove-btn'>Remove</button></td>
+    `
+    tableBody.appendChild(tr)
 
-    const buttonId = `remove-${Date.now()}`
-    
-    expenseItem.innerHTML = `<p>${expenseDescription}</p> -- ${expenseAmount} -- ${expenseCategory}
-    <button id='${buttonId}'>Remove</button>`
-
-    expenseList.appendChild(expenseItem)
-
-    document.getElementById(buttonId).addEventListener('click', ()=>{
-        expenseList.removeChild(expenseItem)
+    tr.querySelector('.remove-btn').addEventListener('click', ()=>{
+        tableBody.removeChild(tr)
         totalAmount -= Number(expenseAmount)
-        totalExpenses.innerHTML = `<h3> Total Amount: ${totalAmount}</h3>`
-        })
-        
+        totalExpenses.innerHTML = `<h3>Total Amount: ${totalAmount}</h3>`
+    })
 }
 //local storage
 function storeExpenses(description, amount, category){
@@ -69,9 +67,19 @@ function loadStoreExpenses(){
     const expenseItemList = JSON.parse(localStorage.getItem('expenseItems')) || []
 
     expenseItemList.forEach(item => {
-        const listItem = document.createElement('div')
-        listItem.textContent = `${item.description} --${item.amount} --${item.category}`
-        expenseList.appendChild(listItem)
+        const tableBody = document.getElementById('expense-table-body')
+
+        const tr = document.createElement('tr')
+        tr.innerHTML = `
+        <td>${item.description}</td>
+        <td>${item.amount}</td>
+        <td>${item.category}</td>
+        <td><button class='remove-btn'>Remove</button></td>
+    `
+    tableBody.appendChild(tr)
+
+    totalAmount += Number(item.amount)
+        totalExpenses.innerHTML = `<h3>Total Amount: ${totalAmount}</h3>`
     })
 }
 window.addEventListener('DOMContentLoaded', loadStoreExpenses)
