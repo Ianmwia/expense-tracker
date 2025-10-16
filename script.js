@@ -33,7 +33,7 @@ let totalAmount = 0
 
 function addTotalExpense(){
     totalAmount += Number(amount.value)
-    totalExpenses.innerHTML = `<h3> Total Amount: ${totalAmount}</h3>`
+    totalExpenses.innerHTML = `<h3> Total Amount: Ksh ${totalAmount}</h3>`
 }
 
 //append list items
@@ -51,7 +51,7 @@ function addExpenseList(expenseDescription,expenseAmount, expenseCategory){
     tr.querySelector('.remove-btn').addEventListener('click', ()=>{
         tableBody.removeChild(tr)
         totalAmount -= Number(expenseAmount)
-        totalExpenses.innerHTML = `<h3>Total Amount: ${totalAmount}</h3>`
+        totalExpenses.innerHTML = `<h3>Total Amount: Ksh ${totalAmount}</h3>`
     })
 }
 //local storage
@@ -79,7 +79,7 @@ function loadStoreExpenses(){
     tableBody.appendChild(tr)
 
     totalAmount += Number(item.amount)
-        totalExpenses.innerHTML = `<h3>Total Amount: ${totalAmount}</h3>`
+        totalExpenses.innerHTML = `<h3>Total Amount: Ksh ${totalAmount}</h3>`
     })
 }
 window.addEventListener('DOMContentLoaded', loadStoreExpenses)
