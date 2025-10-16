@@ -17,11 +17,19 @@
             <form action="" id="expense-form">
                 <input type="text" name="expense" id="expense" placeholder="expense" required>
                 <input type="number" name="amount" id="amount" placeholder="amount" required>
-                <input type="text" name="category" id="category" placeholder="category" required>
+                <select name="category" id="category">
+                    <option value="disabled selected">Select Category</option>
+                    <option value="ingredients">Ingredients</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="labor">Labor</option>
+                    <option value="miscellaneous">Miscellaneous</option>
+                </select>
                 <button type="submit">Add Expense</button>
             </form>
         </section>
+        
         <section id="expense-list">
+            <p>Expenses</p>
             <!--a delete button for each expense-->
         </section>
         <section id="filter-category">
